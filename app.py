@@ -4,10 +4,10 @@ import os
 
 app = Flask(__name__)
 
-# Get Alpaca credentials from environment variables
-ALPACA_API_KEY = os.environ.get("PKCZI5K3MYNFHLEECMYV")
-ALPACA_SECRET = os.environ.get("eYbOLgICD5I3XMsDw4XVY7noVZg24sAnc91UOmH3")
-BASE_URL = "https://paper-api.alpaca.markets/v2"
+# ✅ Use the exact env vars Alpaca expects
+ALPACA_API_KEY = os.environ.get("APCA_API_KEY_ID")
+ALPACA_SECRET = os.environ.get("APCA_API_SECRET_KEY")
+BASE_URL = "https://paper-api.alpaca.markets"
 
 # Initialize Alpaca client
 api = REST(ALPACA_API_KEY, ALPACA_SECRET, BASE_URL)
@@ -28,7 +28,7 @@ def webhook():
         sl = float(data.get("sl"))
 
         side = "buy" if action == "buy" else "sell"
-        qty = 1  # You can make this dynamic later
+        qty = 1
 
         stop_loss = price - sl if side == "buy" else price + sl
         take_profit = price + tp if side == "buy" else price - tp
