@@ -1,8 +1,9 @@
 from flask import Flask, request, jsonify
-from alpaca_trade_api.rest import REST, TimeInForce
+from alpaca_trade_api.rest import REST
 
 app = Flask(__name__)
 
+# Replace with your actual keys
 ALPACA_API_KEY = "PKCZI5K3MYNFHLEECMYV"
 ALPACA_SECRET = "eYbOLgICD5I3XMsDw4XVY7noVZg24sAnc91UOmH3"
 BASE_URL = "https://paper-api.alpaca.markets/v2"
@@ -33,7 +34,7 @@ def webhook():
         qty=qty,
         side=side,
         type='market',
-        time_in_force=TimeInForce.GTC,
+        time_in_force="gtc",
         order_class="bracket",
         stop_loss={"stop_price": round(stop_loss, 2)},
         take_profit={"limit_price": round(take_profit, 2)}
